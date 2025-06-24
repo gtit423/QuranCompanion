@@ -11,7 +11,7 @@ export function AudioPlayer({ surahNumber }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [selectedReciter, setSelectedReciter] = useState("ar.alafasy");
+  const [selectedReciter, setSelectedReciter] = useState("ahmad_huth");
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -34,7 +34,9 @@ export function AudioPlayer({ surahNumber }: AudioPlayerProps) {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.src = quranApi.getAudioUrl(selectedReciter, surahNumber);
+      const audioUrl = quranApi.getAudioUrl(selectedReciter, surahNumber);
+      console.log('Loading audio:', audioUrl);
+      audioRef.current.src = audioUrl;
       audioRef.current.load();
       setIsPlaying(false);
       setCurrentTime(0);
@@ -48,11 +50,15 @@ export function AudioPlayer({ surahNumber }: AudioPlayerProps) {
           audioRef.current.pause();
           setIsPlaying(false);
         } else {
+          console.log('Attempting to play audio:', audioRef.current.src);
+          // Ensure audio is loaded before playing
+          audioRef.current.load();
           await audioRef.current.play();
           setIsPlaying(true);
         }
       } catch (error) {
         console.error("Error playing audio:", error);
+        // Try alternative URL format
         setIsPlaying(false);
       }
     }

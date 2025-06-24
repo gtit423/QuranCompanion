@@ -47,20 +47,20 @@ export const quranApi = {
   // Get audio URL for a specific reciter and surah
   getAudioUrl(reciterId: string, surahNumber: number): string {
     const paddedSurah = surahNumber.toString().padStart(3, '0');
-    return `https://cdn.islamic.network/quran/audio-surah/128/${reciterId}/${paddedSurah}.mp3`;
+    return `https://server8.mp3quran.net/ahmad_huth/${paddedSurah}.mp3`;
   },
 
   // Get verse audio URL
   getVerseAudioUrl(reciterId: string, verseNumber: number): string {
     const paddedVerse = verseNumber.toString().padStart(6, '0');
-    return `https://cdn.islamic.network/quran/audio/128/${reciterId}/${paddedVerse}.mp3`;
+    return `https://everyayah.com/data/Alafasy_128kbps/${paddedVerse}.mp3`;
   }
 };
 
 export const reciters: Reciter[] = [
-  { id: "ar.alafasy", name: "Mishary Rashid Alafasy", arabicName: "مشاري راشد العفاسي" },
-  { id: "ar.abdurrahmaansudais", name: "Abdul Rahman Al-Sudais", arabicName: "عبد الرحمن السديس" },
-  { id: "ar.mahermuaiqly", name: "Maher Al Muaiqly", arabicName: "ماهر المعيقلي" },
-  { id: "ar.saoodshuraym", name: "Saood Al Shuraym", arabicName: "سعود الشريم" },
-  { id: "ar.abdullahbasfar", name: "Abdullah Basfar", arabicName: "عبد الله بصفر" },
+  { id: "ahmad_huth", name: "Ahmad Huth", arabicName: "أحمد حوث" },
+  { id: "alafasy", name: "Mishary Rashid Alafasy", arabicName: "مشاري راشد العفاسي" },
+  { id: "sudais", name: "Abdul Rahman Al-Sudais", arabicName: "عبد الرحمن السديس" },
+  { id: "muaiqly", name: "Maher Al Muaiqly", arabicName: "ماهر المعيقلي" },
+  { id: "shuraym", name: "Saood Al Shuraym", arabicName: "سعود الشريم" },
 ];

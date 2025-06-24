@@ -100,10 +100,23 @@ export function QuranReader({ surahNumber, surahName, surahInfo }: QuranReaderPr
                   variant="ghost"
                   size="sm"
                   className="text-[hsl(135,60%,16%)] hover:text-[hsl(51,100%,42%)]"
-                  onClick={() => {
+                  onClick={async () => {
                     try {
-                      const audio = new Audio(`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${verse.number.toString().padStart(6, '0')}.mp3`);
-                      audio.play().catch(err => console.error("Audio playback failed:", err));
+                      const paddedVerse = verse.number.toString().padStart(6, '0');
+                      const audioUrl = `https://everyayah.com/data/Alafasy_128kbps/${paddedVerse}.mp3`;
+                      console.log('Playing verse audio:', audioUrl);
+                      const audio = new Audio(audioUrl);
+                      
+                      audio.addEventListener('loadeddata', () => {
+                        console.log('Audio loaded, attempting to play');
+                        audio.play().catch(err => console.error("Audio playback failed:", err));
+                      });
+                      
+                      audio.addEventListener('error', (e) => {
+                        console.error("Audio loading failed:", e);
+                      });
+                      
+                      audio.load();
                     } catch (error) {
                       console.error("Error creating audio:", error);
                     }
