@@ -1,9 +1,15 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import path from "path";
 import { storage } from "./storage";
 import { insertUserPreferencesSchema, insertBookmarkSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Root redirect to main app
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(process.cwd(), "index.html"));
+  });
+
   // User preferences routes
   app.get("/api/preferences/:userId", async (req, res) => {
     try {

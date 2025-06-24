@@ -109,6 +109,7 @@ The application uses PostgreSQL with three main tables:
 ✓ Implemented view mode selector (page vs traditional)
 ✓ Enhanced Arabic text display and typography
 ✓ Fixed CSS import order issues
+✓ Added root index.html landing page with Islamic design
 
 ## User Preferences
 
