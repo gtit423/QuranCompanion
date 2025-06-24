@@ -85,8 +85,11 @@ export class MemStorage implements IStorage {
   async createBookmark(insertBookmark: InsertBookmark): Promise<Bookmark> {
     const id = this.currentBookmarkId++;
     const bookmark: Bookmark = {
-      ...insertBookmark,
       id,
+      userId: insertBookmark.userId || null,
+      surahNumber: insertBookmark.surahNumber,
+      verseNumber: insertBookmark.verseNumber,
+      note: insertBookmark.note || null,
       createdAt: new Date(),
     };
     this.bookmarks.set(id, bookmark);

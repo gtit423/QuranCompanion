@@ -99,12 +99,16 @@ The application uses PostgreSQL with three main tables:
 - **API Caching**: TanStack Query provides intelligent caching
 - **Static Generation**: Pre-built pages for better performance
 
-## Changelog
+## Recent Changes
 
-```
-Changelog:
-- June 24, 2025. Initial setup
-```
+### June 24, 2025 - Major Updates
+✓ Fixed audio playback issues across all components
+✓ Updated prayer times calculation for Egypt/Sudan region
+✓ Corrected remaining time calculations for prayers
+✓ Added page-based Quran display (Mushaf-style)
+✓ Implemented view mode selector (page vs traditional)
+✓ Enhanced Arabic text display and typography
+✓ Fixed CSS import order issues
 
 ## User Preferences
 

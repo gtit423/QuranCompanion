@@ -19,7 +19,7 @@ export const prayerTimesApi = {
     try {
       const dateStr = date ? date.toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
       const response = await fetch(
-        `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&method=4`
+        `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&method=2`
       );
       const data = await response.json();
       
@@ -55,21 +55,31 @@ export const prayerTimesApi = {
     ];
 
     // Calculate remaining time and mark current prayer
-    prayers.forEach(prayer => {
+    let nextPrayerIndex = -1;
+    let minDiff = Infinity;
+
+    prayers.forEach((prayer, index) => {
       const prayerTime = this.parseTime(prayer.time);
-      const diff = prayerTime - currentTime;
+      let diff = prayerTime - currentTime;
       
-      if (diff > 0) {
-        const hours = Math.floor(diff / 60);
-        const minutes = diff % 60;
-        prayer.remaining = hours > 0 ? `باقي ${hours} ساعة ${minutes} دقيقة` : `باقي ${minutes} دقيقة`;
+      // If prayer time has passed today, calculate for tomorrow
+      if (diff < 0) {
+        diff += 24 * 60; // Add 24 hours in minutes
       }
+      
+      if (diff < minDiff) {
+        minDiff = diff;
+        nextPrayerIndex = index;
+      }
+      
+      const hours = Math.floor(diff / 60);
+      const minutes = diff % 60;
+      prayer.remaining = hours > 0 ? `باقي ${hours} ساعة ${minutes} دقيقة` : `باقي ${minutes} دقيقة`;
     });
 
-    // Mark current prayer (closest upcoming prayer)
-    const upcomingPrayer = prayers.find(p => p.remaining);
-    if (upcomingPrayer) {
-      upcomingPrayer.isCurrent = true;
+    // Mark the next prayer as current
+    if (nextPrayerIndex >= 0) {
+      prayers[nextPrayerIndex].isCurrent = true;
     }
 
     return prayers;
@@ -100,10 +110,10 @@ export const prayerTimesApi = {
           });
         },
         () => {
-          // Default to Riyadh, Saudi Arabia if geolocation fails
+          // Default to Cairo, Egypt if geolocation fails
           resolve({
-            latitude: 24.7136,
-            longitude: 46.6753,
+            latitude: 30.0444,
+            longitude: 31.2357,
           });
         }
       );

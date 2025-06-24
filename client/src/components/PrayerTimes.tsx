@@ -25,7 +25,7 @@ export function PrayerTimes() {
         <h2 className="text-2xl font-bold">أوقات الصلاة</h2>
         <div className="text-[hsl(51,100%,42%)]">
           <i className="fas fa-map-marker-alt"></i>
-          <span className="mr-2">الرياض، السعودية</span>
+          <span className="mr-2">القاهرة، مصر</span>
         </div>
       </div>
       

@@ -41,14 +41,20 @@ export function AudioPlayer({ surahNumber }: AudioPlayerProps) {
     }
   }, [selectedReciter, surahNumber]);
 
-  const togglePlayPause = () => {
+  const togglePlayPause = async () => {
     if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
+      try {
+        if (isPlaying) {
+          audioRef.current.pause();
+          setIsPlaying(false);
+        } else {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        }
+      } catch (error) {
+        console.error("Error playing audio:", error);
+        setIsPlaying(false);
       }
-      setIsPlaying(!isPlaying);
     }
   };
 

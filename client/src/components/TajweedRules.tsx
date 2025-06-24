@@ -101,6 +101,13 @@ export function TajweedRules() {
                           variant="outline"
                           size="sm"
                           className="text-[hsl(135,60%,16%)] border-[hsl(135,60%,16%)] hover:bg-[hsl(135,60%,16%)] hover:text-white"
+                          onClick={() => {
+                            // Create audio for Tajweed examples
+                            const utterance = new SpeechSynthesisUtterance(example);
+                            utterance.lang = 'ar-SA';
+                            utterance.rate = 0.7;
+                            speechSynthesis.speak(utterance);
+                          }}
                         >
                           <i className="fas fa-play ml-2"></i>
                           استمع
@@ -122,7 +129,15 @@ export function TajweedRules() {
           <div className="font-amiri text-3xl text-[hsl(135,60%,16%)]">
             مِنْ خَيْرٍ
           </div>
-          <Button className="bg-[hsl(135,60%,16%)] text-white hover:bg-[hsl(135,40%,35%)]">
+          <Button 
+            className="bg-[hsl(135,60%,16%)] text-white hover:bg-[hsl(135,40%,35%)]"
+            onClick={() => {
+              const utterance = new SpeechSynthesisUtterance("مِنْ خَيْرٍ");
+              utterance.lang = 'ar-SA';
+              utterance.rate = 0.6;
+              speechSynthesis.speak(utterance);
+            }}
+          >
             <i className="fas fa-play ml-2"></i>
             استمع للمثال
           </Button>

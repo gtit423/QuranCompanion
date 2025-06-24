@@ -100,6 +100,14 @@ export function QuranReader({ surahNumber, surahName, surahInfo }: QuranReaderPr
                   variant="ghost"
                   size="sm"
                   className="text-[hsl(135,60%,16%)] hover:text-[hsl(51,100%,42%)]"
+                  onClick={() => {
+                    try {
+                      const audio = new Audio(`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${verse.number.toString().padStart(6, '0')}.mp3`);
+                      audio.play().catch(err => console.error("Audio playback failed:", err));
+                    } catch (error) {
+                      console.error("Error creating audio:", error);
+                    }
+                  }}
                 >
                   <i className="fas fa-play"></i>
                 </Button>
