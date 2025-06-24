@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap');
+
+:root {
+  --background: hsl(48, 24%, 96%);
+  --foreground: hsl(135, 60%, 16%);
+  --muted: hsl(45, 20%, 94%);
+  --muted-foreground: hsl(135, 20%, 40%);
+  --popover: hsl(48, 24%, 96%);
+  --popover-foreground: hsl(135, 60%, 16%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(135, 60%, 16%);
+  --border: hsl(45, 15%, 85%);
+  --input: hsl(45, 15%, 85%);
+  --primary: hsl(135, 60%, 16%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(45, 20%, 94%);
+  --secondary-foreground: hsl(135, 60%, 16%);
+  --accent: hsl(51, 100%, 42%);
+  --accent-foreground: hsl(135, 60%, 16%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(60, 9%, 98%);
+  --ring: hsl(135, 60%, 16%);
+  --radius: 0.5rem;
+  
+  --islamic-green: hsl(135, 60%, 16%);
+  --islamic-gold: hsl(51, 100%, 42%);
+  --sage-green: hsl(135, 40%, 35%);
+  --warm-white: hsl(48, 24%, 96%);
+}
+
+.dark {
+  --background: hsl(135, 20%, 8%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(135, 15%, 12%);
+  --muted-foreground: hsl(135, 10%, 60%);
+  --popover: hsl(135, 20%, 8%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(135, 20%, 8%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(135, 15%, 20%);
+  --input: hsl(135, 15%, 20%);
+  --primary: hsl(51, 100%, 42%);
+  --primary-foreground: hsl(135, 60%, 16%);
+  --secondary: hsl(135, 15%, 12%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(51, 100%, 42%);
+  --accent-foreground: hsl(135, 60%, 16%);
+  --destructive: hsl(0, 62%, 30%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(51, 100%, 42%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-cairo antialiased bg-background text-foreground;
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+  }
+}
+
+@layer utilities {
+  .font-amiri {
+    font-family: 'Amiri', serif;
+  }
+  
+  .font-cairo {
+    font-family: 'Cairo', sans-serif;
+  }
+  
+  .verse-text {
+    line-height: 2.2;
+    font-size: 1.5rem;
+  }
+  
+  .islamic-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M30 30c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10-10-4.5-10-10zm10-20c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10-4.5-10-10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  .prayer-time-card {
+    background: linear-gradient(135deg, var(--islamic-green) 0%, var(--sage-green) 100%);
+  }
+  
+  .audio-player {
+    background: linear-gradient(90deg, var(--islamic-green) 0%, var(--sage-green) 100%);
+  }
+}
